@@ -26,11 +26,11 @@ public class Main {
     public static void leituraArquivo() {
 
         BinaryTree tree = new BinaryTree();
-        tree.contructTree("../casos/teste5.txt");
+        tree.constructTree("../casos/teste5.txt");
 
         
         for(int i = 4; i < 14; i++){
-            tree.contructTree("../casos/teste"+ i + ".txt");
+            tree.constructTree("../casos/teste"+ i + ".txt");
             System.out.print("\nPara o teste "+ i + " foram achadas "+tree.getNumEquilibrado() +" maquinas em equilibrio");
 
         } 

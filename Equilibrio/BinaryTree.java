@@ -63,7 +63,7 @@ public class BinaryTree {
         numEquilibrado = null;
     }
 
-    public void contructTree(String file){
+    public void constructTree(String file){
 
         Path filePath = Paths.get(file);
         //System.out.println(filePath);
