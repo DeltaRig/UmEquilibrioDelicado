@@ -1,9 +1,3 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
@@ -28,14 +22,14 @@ public class Main {
         BinaryTree tree = new BinaryTree();
         tree.constructTree("../casos/teste5.txt");
 
-        
+        /*
         for(int i = 4; i < 14; i++){
             tree.constructTree("../casos/teste"+ i + ".txt");
             System.out.print("\nPara o teste "+ i + " foram achadas "+tree.getNumEquilibrado() +" maquinas em equilibrio");
 
-        } 
+        }*/ 
 
-        /*
+        
         ArrayList<String> test = tree.equilibrio();
 
         System.out.print("\n\n -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- \nLISTA EM EQUILIBRIO\n");
@@ -52,7 +46,7 @@ public class Main {
         for(int i = 0; i < arvoreFinal.size(); i++) {   
             System.out.print(arvoreFinal.get(i));
         } 
-*/
+
 
 /**
  * 
