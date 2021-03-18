@@ -20,16 +20,16 @@ public class Main {
     public static void leituraArquivo() {
 
         BinaryTree tree = new BinaryTree();
-        tree.constructTree("../casos/teste5.txt");
 
-        /*
+        
         for(int i = 4; i < 14; i++){
             tree.constructTree("../casos/teste"+ i + ".txt");
             System.out.print("\nPara o teste "+ i + " foram achadas "+tree.getNumEquilibrado() +" maquinas em equilibrio");
 
-        }*/ 
+        } 
 
         
+        tree.constructTree("../casos/teste6.txt");
         ArrayList<String> test = tree.equilibrio();
 
         System.out.print("\n\n -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- \nLISTA EM EQUILIBRIO\n");
@@ -41,11 +41,13 @@ public class Main {
 
         System.out.print("\n\n -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- \n\n");
 
-        ArrayList<String> arvoreFinal = tree.positionsPos();
+        System.out.print("\nPara o teste 6 foram achadas "+tree.getNumEquilibrado() +" maquinas em equilibrio");
 
-        for(int i = 0; i < arvoreFinal.size(); i++) {   
-            System.out.print(arvoreFinal.get(i));
-        } 
+        ArrayList<String> arvoreFinal = tree.getNodosWithName();
+
+        //for(int i = 0; i < arvoreFinal.size(); i++) {   
+        //    System.out.print(arvoreFinal.get(i));
+        //} 
 
 
 /**

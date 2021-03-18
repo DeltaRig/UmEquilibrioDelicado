@@ -64,7 +64,7 @@ public class BinaryTree {
     }
 
     public void constructTree(String file){
-
+        this.numEquilibrado = null;
         Path filePath = Paths.get(file);
         //System.out.println(filePath);
 
@@ -151,8 +151,39 @@ public class BinaryTree {
         }
         return aux;
     }
+  
+    /**
+     * Usado para calcular o equilibrio
+     * Cada nodo encontrado em equilibro armazena uma string no vetor
+    */
+    public ArrayList<String> equilibrio() {
+        ArrayList<String> res = new ArrayList<>();
+        equilibrioAux(root, res, root.work);
+        numEquilibrado = res.size();
+        return res;
+    }
+    private Integer equilibrioAux(Node n, ArrayList<String> res, Integer work) {
+        if(n != null){
+            if(n.left == null)
+                return n.work;
+            
+            if(n.work == null){
+                if(n.left.work == null){
+                    n.left.work = equilibrioAux(n.left, res, n.work);
+                }
+                if(n.right.work == null){
+                    n.right.work = equilibrioAux(n.right, res, n.work);
+                }
 
-
+                n.work = n.left.work + n.right.work;
+                if(n.left.work == n.right.work){
+                    res.add("\nMaquina equilibrado: " + n.name + ", tem trabalho = " + n.work);
+                }
+                return n.work;
+            }
+        }
+        return work;
+    }
 
 
     /**
@@ -175,42 +206,31 @@ public class BinaryTree {
             "\n----------------------------\n\n");
         }
     }
-  
+
     /**
-     * Usado para calcular o equilibrio
-     * Cada nodo encontrado em equilibro armazena uma string no vetor
+     * Usado para verificar se estava formando a árvore corretamente
+     * @return uma lista com todos os elementos da arvore na ordem do 
+     * caminhamento pos-fixado.
     */
-    public ArrayList<String> equilibrio() {
+    public ArrayList<String> getNodosWithName() {
         ArrayList<String> res = new ArrayList<>();
-        equilibrioAux(root, res, root.work);
+        getNodosWithNameAux(root, res);
         return res;
     }
-    private Integer equilibrioAux(Node n, ArrayList<String> res, Integer work) {
+    private void getNodosWithNameAux(Node n, ArrayList<String> res) {
         if(n != null){
-            if(n.left == null)
-                return n.work;
-            
-            if(n.work == null){
-                if(n.left.work == null){
-                    n.left.work = equilibrioAux(n.left, res, n.work);
+            positionsPosAux(n.left, res);
+            positionsPosAux(n.right, res);
+            if(n.left != null){
+                if(n.left.name != null){
+                    res.add("Nodo: " + n.name + "\nElemento: " + n.work + 
+                    "\nPai: " + n.father + "\nFilho da esquerda: " + n.left +
+                    "\nFilho da direita: " + n.right +
+                    "\n----------------------------\n\n");
                 }
-                if(n.right.work == null){
-                    n.right.work = equilibrioAux(n.right, res, n.work);
-                }
-
-                n.work = n.left.work + n.right.work;
-                if(n.left.work == n.right.work){
-                    res.add("\nMaquina equilibrado: " + n.name + ", tem trabalho = " + n.work);
-                }
-                return n.work;
             }
-
-            System.out.print("Nodo: " + n.name + "\nElemento: " + n.work + 
-            "\nPai: " + n.father + "\nFilho da esquerda: " + n.left +
-            "\nFilho da direita: " + n.right +
-            "\n----------------------------\n\n");
         }
-        return work;
     }
+
 
 }
