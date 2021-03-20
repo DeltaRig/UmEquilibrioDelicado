@@ -87,23 +87,24 @@ public class BinaryTree {
             addLeft(temporary[1], null, root.name);
             addRight(temporary[2], null, root.name);
 
-            line = reader.readLine();        
+            while ( true ) {
 
-            while (line != null) {
+                line = reader.readLine();
+                if ( line == null ) break;
+
                 temporary = line.split(" ");
-                if(temporary[1].charAt(0) == 'X'){
-                    addLeft(temporary[1], null, temporary[0]);
-                    addRight(temporary[2], null, temporary[0]);
-                } else {
-                    addLeft(null, Integer.valueOf(temporary[1]), temporary[0]);
-                    addRight(null, Integer.valueOf(temporary[2]), temporary[0]);
-                }
-
-                    line = reader.readLine();
-                }
-            } catch (IOException e) {
-                System.err.format("Erro na leitura do arquivo: ", e);
+                    if(temporary[1].charAt(0) == 'X'){
+                        addLeft(temporary[1], null, temporary[0]);
+                        addRight(temporary[2], null, temporary[0]);
+                    } else {
+                        addLeft(null, Integer.valueOf(temporary[1]), temporary[0]);
+                        addRight(null, Integer.valueOf(temporary[2]), temporary[0]);
+                    }
+                
             }
+        } catch (IOException e) {
+            System.err.format("Erro na leitura do arquivo: ", e);
+        }
     }
 
 
