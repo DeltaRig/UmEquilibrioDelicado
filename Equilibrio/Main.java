@@ -2,12 +2,12 @@ import java.util.ArrayList;
 
 /**
  * Classe main
- * 
- * Algoritmos e Estrutura de Dados      138
- * Professor: João Batista
+
  * @author Daniela Pereira Rigoli
- * @version 1.0
- * 
+ * @version 1.03
+ * @note
+ * Algoritmos e Estrutura de Dados     | 138 |
+ * Professor: João Batista
  */
 
 public class Main {
@@ -24,13 +24,14 @@ public class Main {
         
         for(int i = 4; i < 14; i++){
             tree.constructTree("../casos/teste"+ i + ".txt");
-            System.out.print("\nPara o teste "+ i + " foram achadas "+tree.getNumEquilibrado() +" maquinas em equilibrio");
+            System.out.print("\n\nPara o teste "+ i + " foram achadas "+tree.getNumEquilibrado() +" maquinas em equilibrio");
+            System.out.print("\nForam verificados: " +tree.getCheckedNodes() + " do total de " + tree.getCount());
 
         } 
 
         
         tree.constructTree("../casos/teste6.txt");
-        ArrayList<String> test = tree.equilibrio();
+        ArrayList<String> test = tree.calcEquilibrio();
 
         System.out.print("\n\n -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- \nLISTA EM EQUILIBRIO\n");
         

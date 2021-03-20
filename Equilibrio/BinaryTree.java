@@ -21,14 +21,14 @@ public class BinaryTree {
 
     // Cada nodo representa uma maquina
     private static final class Node {
-        public Node father;
+        public Node parent;
         public Node left;
         public Node right;
         private Integer work; // E = trabalho a ser executado ou divido
         private String name; //X0, X1
 
         public Node(String name, Integer work) {
-            father = null;
+            parent = null;
             left = null;
             right = null;
             this.name = name;
@@ -43,6 +43,7 @@ public class BinaryTree {
     
     // Atributos
     private int count; //contagem do número de nodos
+    private int checkedNodes; // criado para confirmar se todos nodos estavam sendo verificados
     private Node root; //referência para o nodo raiz
     private Integer numEquilibrado;
 
@@ -50,11 +51,18 @@ public class BinaryTree {
         if(numEquilibrado != null){
             return numEquilibrado;
         } else {
-            ArrayList<String> aux = equilibrio();
+            ArrayList<String> aux = calcEquilibrio();
             return aux.size();
         }
     }
 
+    public int getCount(){
+        return count;
+    }
+
+    public int getCheckedNodes(){
+        return checkedNodes;
+    }
     
     // Metodos
     public BinaryTree() {
@@ -65,6 +73,7 @@ public class BinaryTree {
 
     public void constructTree(String file){
         this.numEquilibrado = null;
+        this.count = 0;
         Path filePath = Paths.get(file);
         //System.out.println(filePath);
 
@@ -114,7 +123,7 @@ public class BinaryTree {
         // Se encontrou elemPai e ele nao tem filho a esquerda
         // insere element como filho a esquerda de elemPai
         Node n = new Node(name, element);
-        n.father = aux;
+        n.parent = aux;
         aux.left = n;
         count++;
     }
@@ -129,7 +138,7 @@ public class BinaryTree {
         // Se encontrou elemPai e ele nao tem filho a direita
         // insere element como filho a direita de elemPai
         Node n = new Node(name, element);
-        n.father = aux;
+        n.parent = aux;
         aux.right = n;
         count++;
     }
@@ -156,29 +165,29 @@ public class BinaryTree {
      * Usado para calcular o equilibrio
      * Cada nodo encontrado em equilibro armazena uma string no vetor
     */
-    public ArrayList<String> equilibrio() {
+    public ArrayList<String> calcEquilibrio() {
         ArrayList<String> res = new ArrayList<>();
-        equilibrioAux(root, res, root.work);
+        checkedNodes = 0;
+        calcEquilibrioAux(root, res, root.work);
         numEquilibrado = res.size();
         return res;
     }
-    private Integer equilibrioAux(Node n, ArrayList<String> res, Integer work) {
+    private Integer calcEquilibrioAux(Node n, ArrayList<String> res, Integer work) {
         if(n != null){
-            if(n.left == null)
+            if(n.left == null){
+                checkedNodes++;
                 return n.work;
+            }
             
             if(n.work == null){
-                if(n.left.work == null){
-                    n.left.work = equilibrioAux(n.left, res, n.work);
-                }
-                if(n.right.work == null){
-                    n.right.work = equilibrioAux(n.right, res, n.work);
-                }
+                n.left.work = calcEquilibrioAux(n.left, res, n.work);
+                n.right.work = calcEquilibrioAux(n.right, res, n.work);
 
                 n.work = n.left.work + n.right.work;
                 if(n.left.work == n.right.work){
                     res.add("\nMaquina equilibrado: " + n.name + ", tem trabalho = " + n.work);
                 }
+                checkedNodes++;
                 return n.work;
             }
         }
@@ -201,7 +210,7 @@ public class BinaryTree {
             positionsPosAux(n.left, res);
             positionsPosAux(n.right, res);
             res.add("Nodo: " + n.name + "\nElemento: " + n.work + 
-            "\nPai: " + n.father + "\nFilho da esquerda: " + n.left +
+            "\nPai: " + n.parent + "\nFilho da esquerda: " + n.left +
             "\nFilho da direita: " + n.right +
             "\n----------------------------\n\n");
         }
@@ -214,6 +223,7 @@ public class BinaryTree {
     */
     public ArrayList<String> getNodosWithName() {
         ArrayList<String> res = new ArrayList<>();
+
         getNodosWithNameAux(root, res);
         return res;
     }
@@ -224,11 +234,12 @@ public class BinaryTree {
             if(n.left != null){
                 if(n.left.name != null){
                     res.add("Nodo: " + n.name + "\nElemento: " + n.work + 
-                    "\nPai: " + n.father + "\nFilho da esquerda: " + n.left +
+                    "\nPai: " + n.parent + "\nFilho da esquerda: " + n.left +
                     "\nFilho da direita: " + n.right +
                     "\n----------------------------\n\n");
                 }
             }
+
         }
     }
 

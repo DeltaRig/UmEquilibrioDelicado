@@ -8,13 +8,13 @@ import java.util.NoSuchElementException;
 public class BinaryTreeOfInteger {
 
     private static final class Node {
-        public Node father;
+        public Node parent;
         public Node left;
         public Node right;
         private Integer element;
 
         public Node(Integer element) {
-            father = null;
+            parent = null;
             left = null;
             right = null;
             this.element = element;
@@ -83,7 +83,7 @@ public class BinaryTreeOfInteger {
         if(aux == root){
             return null;
         }
-        return aux.father.element;
+        return aux.parent.element;
     }
 
     /**
@@ -128,7 +128,7 @@ public class BinaryTreeOfInteger {
         // Se encontrou elemPai e ele nao tem filho a esquerda
         // insere element como filho a esquerda de elemPai
         Node n = new Node(element);
-        n.father = aux;
+        n.parent = aux;
         aux.left = n;
         count++;
         return true;
@@ -152,7 +152,7 @@ public class BinaryTreeOfInteger {
         // Se encontrou elemPai e ele nao tem filho a direita
         // insere element como filho a direita de elemPai
         Node n = new Node(element);
-        n.father = aux;
+        n.parent = aux;
         aux.right = n;
         count++;
         return true;        
@@ -383,9 +383,9 @@ public class BinaryTreeOfInteger {
 
         int level = 0;
         do{
-            aux = aux.father;
+            aux = aux.parent;
             level++;
-        }while(aux.father != null);
+        }while(aux.parent != null);
 
         return level;
     }
