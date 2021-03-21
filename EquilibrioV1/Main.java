@@ -25,7 +25,6 @@ public class Main {
         for(int i = 4; i < 14; i++){
             tree.constructTree("../casos/teste"+ i + ".txt");
             System.out.print("\nPara o teste "+ i + " foram achadas "+tree.getNumEquilibrado() +" maquinas em equilibrio");
-            System.out.print("\nForam verificados: " +tree.getCheckedNodes() + " do total de " + tree.getCount());
 
         } 
 

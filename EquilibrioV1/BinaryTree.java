@@ -43,7 +43,6 @@ public class BinaryTree {
     
     // Atributos
     private int count; //contagem do número de nodos
-    private int checkedNodes; // criado para confirmar se todos nodos estavam sendo verificados
     private Node root; //referência para o nodo raiz
     private Integer numEquilibrado;
 
@@ -60,9 +59,6 @@ public class BinaryTree {
         return count;
     }
 
-    public int getCheckedNodes(){
-        return checkedNodes;
-    }
     
     // Metodos
     public BinaryTree() {
@@ -168,7 +164,6 @@ public class BinaryTree {
     */
     public ArrayList<String> calcEquilibrio() {
         ArrayList<String> res = new ArrayList<>();
-        checkedNodes = 0;
         calcEquilibrioAux(root, res, root.work);
         numEquilibrado = res.size();
         return res;
@@ -176,7 +171,6 @@ public class BinaryTree {
     private Integer calcEquilibrioAux(Node n, ArrayList<String> res, Integer work) {
         if(n != null){
             if(n.left == null){
-                checkedNodes++;
                 return n.work;
             }
             
@@ -188,7 +182,6 @@ public class BinaryTree {
                 if(n.left.work == n.right.work){
                     res.add("\nMaquina equilibrado: " + n.name + ", tem trabalho = " + n.work);
                 }
-                checkedNodes++;
                 return n.work;
             }
         }
