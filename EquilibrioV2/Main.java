@@ -22,15 +22,16 @@ public class Main {
         Equilibrium blob = new Equilibrium();
 
         
-        //for(int i = 4; i < 14; i++){
-            //blob.construct("../casos/teste"+ i + ".txt");
-            //System.out.print("\nPara o teste "+ i + " foram achadas "+blob.getNumEquilibrado() +" maquinas em equilibrio");
+        for(int i = 4; i < 14; i++){
+            blob.construct("../casos/teste"+ i + ".txt");
+            System.out.print("\nPara o teste "+ i + " foram achadas "+blob.getNumEquilibrado() +" maquinas em equilibrio");
 
-       // } 
+        } 
 
         
-        blob.construct("../casos/teste4.txt");
-        blob.getArrayComplete();
+        //blob.construct("../casos/teste4.txt");
+        //blob.getArrayComplete();
+        //System.out.print("Maquinas equilibradas: " + blob.getNumEquilibrado());
         //ArrayList<String> test = blob.calcEquilibrio();
 
         //System.out.print("\n\n -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- \nLISTA EM EQUILIBRIO\n");

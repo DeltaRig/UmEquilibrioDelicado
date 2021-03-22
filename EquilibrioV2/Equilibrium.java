@@ -49,12 +49,8 @@ public class Equilibrium {
     private Integer numEquilibrado;
 
     public int getNumEquilibrado(){
-        if(numEquilibrado != null){
-            return numEquilibrado;
-        } else {
-            ArrayList<String> aux = calcEquilibrio();
-            return aux.size();
-        }
+        calcEquilibrio(0);
+        return numEquilibrado;
     }
 
     public void getArrayComplete(){
@@ -98,9 +94,15 @@ public class Equilibrium {
                 if(temporary[1].charAt(0) == 'X'){
                     int left = Integer.parseInt(temporary[1].substring(1));
                     int right = Integer.parseInt(temporary[2].substring(1));
+                    
                     nodos[position] = new Node(null, left, right);
                 } else {
-                    nodos[position] = new Node(Integer.valueOf(temporary[1]) + Integer.valueOf(temporary[2]), -1, -1);
+                    int left = Integer.parseInt(temporary[1]);
+                    int right = Integer.parseInt(temporary[2]);
+                    if(left == right){
+                        numEquilibrado++; // aqui começa a contagem das maquinas equilibradas
+                    }
+                    nodos[position] = new Node((left + right), -1, -1);
                 }
             }
         
@@ -115,7 +117,41 @@ public class Equilibrium {
      * Usado para calcular o equilibrio
      * Cada nodo encontrado em equilibro armazena uma string no vetor
     */
-    public int calcEquilibrio() {
-        return 0;
+
+    private int calcEquilibrio(int position) {
+        if(nodos[position].left == -1){
+            //if(nodos[position].right == -1){ // verificação separada para aceitar o teste x2
+                return nodos[position].work;
+            //}
+        }
+
+        if(nodos[position].work == null){
+            int leftWork = calcEquilibrio(nodos[position].left);
+            int rightWork = calcEquilibrio(nodos[position].right);
+            nodos[position].work = leftWork + rightWork;
+
+            //System.out.print("Na posição "+ position + " encontrei " + nodos[position].work + ", vindo de " leftWork + " e "+ rightWork);
+            if(leftWork == rightWork){
+                this.numEquilibrado++;
+            }
+
+        }
+        return nodos[position].work;
     }
+
+    /****
+            if(n.work == null){
+                n.left.work = calcEquilibrioAux(n.left, res, n.work);
+                n.right.work = calcEquilibrioAux(n.right, res, n.work);
+
+                n.work = n.left.work + n.right.work;
+                if(n.left.work == n.right.work){
+                    res.add("\nMaquina equilibrado: " + n.name + ", tem trabalho = " + n.work);
+                }
+                return n.work;
+            }
+        }
+        return work;
+    }
+     */
 }
