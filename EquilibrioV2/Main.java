@@ -19,18 +19,19 @@ public class Main {
 
     public static void leituraArquivo() {
 
-        Equilibrium tree = new Equilibrium();
+        Equilibrium blob = new Equilibrium();
 
         
-        for(int i = 4; i < 14; i++){
-            tree.construct("../casos/teste"+ i + ".txt");
-            //System.out.print("\nPara o teste "+ i + " foram achadas "+tree.getNumEquilibrado() +" maquinas em equilibrio");
+        //for(int i = 4; i < 14; i++){
+            //blob.construct("../casos/teste"+ i + ".txt");
+            //System.out.print("\nPara o teste "+ i + " foram achadas "+blob.getNumEquilibrado() +" maquinas em equilibrio");
 
-        } 
+       // } 
 
         
-        //tree.construct("../casos/teste6.txt");
-        //ArrayList<String> test = tree.calcEquilibrio();
+        blob.construct("../casos/teste4.txt");
+        blob.getArrayComplete();
+        //ArrayList<String> test = blob.calcEquilibrio();
 
         //System.out.print("\n\n -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- \nLISTA EM EQUILIBRIO\n");
         
@@ -41,7 +42,7 @@ public class Main {
 
         //System.out.print("\n\n -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- \n\n");
 
-        //System.out.print("\nPara o teste 6 foram achadas "+tree.getNumEquilibrado() +" maquinas em equilibrio");
+        //System.out.print("\nPara o teste 6 foram achadas "+blob.getNumEquilibrado() +" maquinas em equilibrio");
 
         
 
