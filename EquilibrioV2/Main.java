@@ -21,11 +21,13 @@ public class Main {
 
         Equilibrium blob = new Equilibrium();
 
-        
-        for(int i = 4; i < 14; i++){
+        long tempoInicio;
+        for(int i = 4; i <= 13; i++){
+            tempoInicio = System.currentTimeMillis();
             blob.construct("../casos/teste"+ i + ".txt");
             System.out.print("\nPara o teste "+ i + " foram achadas "+blob.getNumEquilibrado() +" maquinas em equilibrio");
 
+            System.out.println("\nTempo Total: "+(System.currentTimeMillis()-tempoInicio) + " milisegundos");
         } 
 
         
