@@ -27,7 +27,7 @@ public class Main {
             blob.construct("../casos/teste"+ i + ".txt");
             System.out.print("\nPara o teste "+ i + " foram achadas "+blob.getNumEquilibrado() +" maquinas em equilibrio");
 
-            System.out.println("\nTempo Total: "+(System.currentTimeMillis()-tempoInicio) + " milisegundos");
+            //System.out.println("\nTempo Total: "+(System.currentTimeMillis()-tempoInicio) + " milisegundos");
         } 
 
         

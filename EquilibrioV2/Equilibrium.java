@@ -125,6 +125,8 @@ public class Equilibrium {
             //}
         }
 
+
+        
         if(nodos[position].work == null){
             int leftWork = calcEquilibrio(nodos[position].left);
             int rightWork = calcEquilibrio(nodos[position].right);
